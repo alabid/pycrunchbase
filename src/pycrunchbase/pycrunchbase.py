@@ -27,6 +27,20 @@ class CrunchBase(object):
             raise ValueError('API key for CrunchBase not supplied')
         self.api_key = api_key
 
+    def all_investors(self):
+        """
+        Searches for all investors and returns the first
+        :class:`Page` of results
+
+        Returns:
+            Page or None
+        """
+        url = self.ORGANIZATIONS_URL
+        data = self._make_request(url, {'organization_types':'investor'})
+        if not data or data.get('error'):
+            return None
+        return Page('Investors', data)
+
     def organizations(self, name):
         """
         Search for a organization given a name, returns the first
