@@ -44,10 +44,7 @@ class Product(Node):
                 setattr(self, attr, parse_date(getattr(self, attr)))
 
     def __str__(self):
-        return u'{name} by {owner}'.format(
-            name=self.name,
-            owner=self.owner_name
-        )
+        return u'{name}'.format(name=self.name)
 
     def __repr__(self):
         return self.__str__()
